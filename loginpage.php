@@ -6,9 +6,9 @@ session_start();
 $admin = array('admin' => 'Duaa@gmail.com', 'adminpass' => 'Dd12345@');
 if (isset($_POST['submitlogin'])) {
     $e = $_POST['elogin'];
-    echo $e;
+    // echo $e;
     $p = $_POST['passlogin'];
-    echo $p;
+    // echo $p;
     if (($e == $admin['admin']) && ($p == $admin['adminpass'])) {
         header('location: admin.php');
     } elseif (isset($_SESSION["email"]) && ($e == $_SESSION["email"]) && isset($_SESSION["password"]) && ($p == $_SESSION["password"])) {

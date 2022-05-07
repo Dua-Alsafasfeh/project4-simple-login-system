@@ -1,24 +1,33 @@
 <?php
 session_start();
-$admin_arr =array(
-    'fullname' => 'Duaa Ibrahim Abd-Alqader Alsafasfeh',
-    'email'=> 'Duaa@gmail.com',
-    'password'=> 'Dd12345@',
-
+//store information in associative array
+$arr = array(
+    'firstname' => $_SESSION["firstname"],
+    'secondname' => $_SESSION["secondname"],
+    'thirdname' => $_SESSION["thirdname"],
+    'lasrname' => $_SESSION["lasrname"],
+    'birthdate' => $_SESSION["birthdate"],
+    'email' => $_SESSION["email"],
+    'phone' => $_SESSION["phone"],
+    'password' => $_SESSION["password"],
+    'creationdate' => $_SESSION["datecreation"],
+    'lastlogindate' => $_SESSION["datelastlogin"]
 );
-$fullname = $admin_arr['fullname'];
-$adminemail = $admin_arr['email'];
-$adminpass = $admin_arr['password'];
+// print_r($arr);
+$fullname = $_SESSION["firstname"] . " " . $_SESSION["secondname"] . " " . $_SESSION["thirdname"] . " " . $_SESSION["lasrname"];
+$adminemail = $_SESSION["email"];
+$adminpass = $_SESSION["password"];
+$DCreated = $_SESSION["datecreation"];
+$Dlastlogin = $_SESSION["datelastlogin"];
 
-$filename = 'landingpage.php';
-if (file_exists($filename)) {
-  $DCreated = date ("F d Y H:i:s.", filemtime($filename));
-  	// somefile.txt was last changed: December 29 2020 22:16:23.
-}
-$Dlastlogin = date ("H : i : s - d/m/y") .(60 * 24 * 60 * 60 + time());
+// $filename = 'landingpage.php';
+// if (file_exists($filename)) {
+//   $DCreated = date ("F d Y H:i:s.", filemtime($filename));
+//   	// somefile.txt was last changed: December 29 2020 22:16:23.
+// }
+// $Dlastlogin = date ("H : i : s - d/m/y") .(60 * 24 * 60 * 60 + time());
 ?>
-
-
+<!-- //////////////////////////////HTML///////////////////////////////////////// -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,8 +72,8 @@ $Dlastlogin = date ("H : i : s - d/m/y") .(60 * 24 * 60 * 60 + time());
                     <tr>
                         <th> Password :</th>
                         <td><?php if (isset($adminpass)) {
-                                    echo $adminpass;
-                                } ?></td>
+                                echo $adminpass;
+                            } ?></td>
                     </tr>
                     <tr>
                         <th>Date Created:</th>

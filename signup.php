@@ -1,8 +1,5 @@
 <?php
 session_start();
-// echo "<pre>";
-// print_r($_SESSION);
-// echo "</pre>";
 $letters = "/^[A-Za-z]+$/";
 $filter = "/([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/";
 $pwd_expression = "/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$/";
@@ -55,6 +52,11 @@ if (isset($_POST['submit'])) {
     elseif (($_POST['cpass']) !== ($_POST['pass'])) {
         $cpErr = "password not matched";
     } else {
+        $DCreated = date("F d Y ");
+        $Dlastlogin = date("d/m/y - H:i:s ") . (60 * 24 * 60 * 60 + time());
+
+        $_SESSION["datelastlogin"] = $Dlastlogin;
+        $_SESSION["datecreation"] = $DCreated;
         $_SESSION["firstname"] = $_POST["first"];
         $_SESSION["secondname"] = $_POST["second"];
         $_SESSION["thirdname"] = $_POST["third"];
@@ -65,23 +67,10 @@ if (isset($_POST['submit'])) {
         $_SESSION["password"] = $_POST["pass"];
         $_SESSION["confirmpassword"] = $_POST["cpass"];
 
-        //store information in associative array
-        $arr = array(
-            'firstname' => $_SESSION["firstname"],
-            'secondname' => $_SESSION["secondname"],
-            'thirdname' => $_SESSION["thirdname"],
-            'lasrname' => $_SESSION["lasrname"],
-            'birthdate' => $_SESSION["birthdate"],
-            'email' => $_SESSION["email"],
-            'phone' => $_SESSION["phone"],
-            'password' => $_SESSION["password"]
-        );
-        // print_r($arr);
         header("location: loginpage.php");
         // session_unset();
     }
 }
-
 ?>
 
 <!-- ///////////////////////////////////// HTML ////////////////////////////////////////////////-->
