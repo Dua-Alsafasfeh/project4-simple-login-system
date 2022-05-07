@@ -1,3 +1,27 @@
+<?php
+session_start();
+// echo "<pre>";
+// print_r($_SESSION);
+// echo "</pre>";
+$admin = array('admin' => 'Duaa@gmail.com', 'adminpass' => 'Dd12345@');
+if (isset($_POST['submitlogin'])) {
+    $e = $_POST['elogin'];
+    echo $e;
+    $p = $_POST['passlogin'];
+    echo $p;
+    if (($e == $admin['admin']) && ($p == $admin['adminpass'])) {
+        header('location: admin.php');
+    } elseif (isset($_SESSION["email"]) && ($e == $_SESSION["email"]) && isset($_SESSION["password"]) && ($p == $_SESSION["password"])) {
+        header('location: welcomepage.php');
+    } else {
+        $msg = "Invalid Login Details";
+    }
+}
+// session_unset();
+?>
+
+<!-- //////////////////////  HTML //////////////////////////////////// -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +29,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css ?v=<?php echo time(); ?>">
     <title>login page</title>
 </head>
 
@@ -20,20 +44,22 @@
                     <h2>LOGIN</h2>
                     <p id="p2">Welcome back! Login With Your Credentials</p>
                 </div>
-                <form action="">
+                <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST">
                     <div class="inp">
-                        <input type="email" id="email" placeholder="Email" class="iconmail" required>
+                        <input type="email" id="email" placeholder="Email" name="elogin" class="iconmail" required>
                     </div>
 
                     <div class="inp">
-                        <input type="password" id="password" placeholder="Password" class="iconpass" required>
+                        <input type="password" id="password" placeholder="Password" class="iconpass" name="passlogin" required>
                     </div>
-                    <p id="erroruser"></p>
+                    <p id="erroruser"><?php if (isset($msg)) {
+                                            echo $msg;
+                                        } ?></p>
                     <div class="butt">
-                        <button type="button" class="button" id="button">Login</button>
+                        <button type="submit" class="button" id="button" name="submitlogin">Login</button>
                     </div>
                     <div class="p2">
-                        <p id="p2">Don't have an account ?<span class="bold">Sign Up</span></p>
+                        <p id="p2">Don't have an account ?<span class="bold"><a href="signup.php" style="color:#205375">Sign Up</a></span></p>
                     </div>
                 </form>
             </div>
