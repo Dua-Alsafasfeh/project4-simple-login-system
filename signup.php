@@ -1,8 +1,8 @@
 <?php
 session_start();
 $_SESSION["userdata"];
-if(empty($_SESSION["userdata"])){
-    $_SESSION["userdata"]= [];
+if (empty($_SESSION["userdata"])) {
+    $_SESSION["userdata"] = [];
 }
 $letters = "/^[A-Za-z]+$/";
 $filter = "/([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/";
@@ -44,6 +44,16 @@ if (isset($_POST['submit'])) {
     elseif (!preg_match($filter, $_POST['email'])) {
         $eErr = "Email must be as : a@example.com";
     }
+    //check email if exist
+     elseif (isset($_POST['email'])) {
+        if(!empty($_SESSION["userdata"])) {
+            foreach ($_SESSION["userdata"] as $key => $value) {
+                if ($_POST['email'] == $value["email"]) {
+                    $eErr = "Email already used";
+                }
+            }
+        }
+     }
     ////check mobile number
     elseif (!preg_match($mobfilter, $_POST['mobile'])) {
         $mErr = "mobile number must contain 14 digits only";
@@ -57,7 +67,7 @@ if (isset($_POST['submit'])) {
         $cpErr = "password not matched";
     } else {
         $DCreated = date("F d Y ");
-        $Dlastlogin = date("d/m/y - H:i:s ") ;
+        $Dlastlogin = date("d/m/y - H:i:s ");
 
         $_SESSION["datelastlogin"] = $Dlastlogin;
         $_SESSION["datecreation"] = $DCreated;
@@ -71,6 +81,7 @@ if (isset($_POST['submit'])) {
         $_SESSION["password"] = $_POST["pass"];
         $_SESSION["confirmpassword"] = $_POST["cpass"];
 
+        //store information in associative array
         $arr = array(
             'firstname' => $_SESSION["firstname"],
             'secondname' => $_SESSION["secondname"],
@@ -84,7 +95,7 @@ if (isset($_POST['submit'])) {
             'lastlogindate' => $_SESSION["datelastlogin"]
         );
         array_push($_SESSION["userdata"], $arr);
-        // print_r($_SESSION["userdata"]);
+        print_r($_SESSION["userdata"]);
         header("location: loginpage.php");
         // session_unset();
     }
@@ -129,7 +140,9 @@ if (isset($_POST['submit'])) {
                                 <label for="first">First Name:</label>
                             </td>
                             <td class="input">
-                                <input type="text" id="first" class="first" name="first" required>
+                                <input type="text" id="first" class="first" name="first" value="<?php if (isset($_POST['first'])) {
+                                                                                                    echo $_POST['first'];
+                                                                                                } ?>" required>
                             </td>
                         </tr>
 
@@ -148,7 +161,9 @@ if (isset($_POST['submit'])) {
                                 <label for="last">Second Name:</label>
                             </td>
                             <td class="input">
-                                <input type="text" id="second" class="second" name="second" required>
+                                <input type="text" id="second" class="second" name="second" value="<?php if (isset($_POST['second'])) {
+                                                                                                        echo $_POST['second'];
+                                                                                                    } ?>" required>
                             </td>
                         </tr>
                         <tr>
@@ -165,7 +180,9 @@ if (isset($_POST['submit'])) {
                                 <label for="third">Third Name:</label>
                             </td>
                             <td class="input">
-                                <input type="text" id="third" class="third" name="third" required>
+                                <input type="text" id="third" class="third" name="third" value="<?php if (isset($_POST['third'])) {
+                                                                                                    echo $_POST['third'];
+                                                                                                } ?>" required>
                             </td>
                         </tr>
                         <tr>
@@ -182,7 +199,9 @@ if (isset($_POST['submit'])) {
                                 <label for="last">Last Name:</label>
                             </td>
                             <td class="input">
-                                <input type="text" id="last" class="last" name="last" required>
+                                <input type="text" id="last" class="last" name="last" value="<?php if (isset($_POST['last'])) {
+                                                                                                    echo $_POST['last'];
+                                                                                                } ?>" required>
                             </td>
                         </tr>
                         <tr>
@@ -199,7 +218,9 @@ if (isset($_POST['submit'])) {
                                 <label for="date">Date of Birth:</label>
                             </td>
                             <td class="input">
-                                <input type="date" id="date" class="date" name="date" required>
+                                <input type="date" id="date" class="date" name="date" value="<?php if (isset($_POST['date'])) {
+                                                                                                    echo $_POST['date'];
+                                                                                                } ?>" required>
                             </td>
                         </tr>
 
@@ -217,7 +238,9 @@ if (isset($_POST['submit'])) {
                                 <label for="mail">Email:</label>
                             </td>
                             <td class="input">
-                                <input type="email" id="mail" class="mail" name="email" required>
+                                <input type="email" id="mail" class="mail" name="email" value="<?php if (isset($_POST['email'])) {
+                                                                                                    echo $_POST['email'];
+                                                                                                } ?>" required>
                             </td>
                         </tr>
                         <tr>
@@ -234,7 +257,9 @@ if (isset($_POST['submit'])) {
                                 <label for="mobile">Mobile Number:</label>
                             </td>
                             <td class="input">
-                                <input type="text" id="mobile" class="mobile" name="mobile" required>
+                                <input type="text" id="mobile" class="mobile" name="mobile" value="<?php if (isset($_POST['mobile'])) {
+                                                                                                        echo $_POST['mobile'];
+                                                                                                    } ?>" required>
                             </td>
                         </tr>
                         <tr>

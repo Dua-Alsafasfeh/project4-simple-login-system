@@ -1,25 +1,5 @@
 <?php
 session_start();
-//store information in associative array
-$arr = array(
-    'firstname' => $_SESSION["firstname"],
-    'secondname' => $_SESSION["secondname"],
-    'thirdname' => $_SESSION["thirdname"],
-    'lasrname' => $_SESSION["lasrname"],
-    'birthdate' => $_SESSION["birthdate"],
-    'email' => $_SESSION["email"],
-    'phone' => $_SESSION["phone"],
-    'password' => $_SESSION["password"],
-    'creationdate' => $_SESSION["datecreation"],
-    'lastlogindate' => $_SESSION["datelastlogin"]
-);
-// print_r($arr);
-$fullname = $_SESSION["firstname"] . " " . $_SESSION["secondname"] . " " . $_SESSION["thirdname"] . " " . $_SESSION["lasrname"];
-$adminemail = $_SESSION["email"];
-$adminpass = $_SESSION["password"];
-$DCreated = $_SESSION["datecreation"];
-$Dlastlogin = $_SESSION["datelastlogin"];
-
 // $filename = 'landingpage.php';
 // if (file_exists($filename)) {
 //   $DCreated = date ("F d Y H:i:s.", filemtime($filename));
@@ -51,75 +31,44 @@ $Dlastlogin = $_SESSION["datelastlogin"];
             </p>
         </div>
 
-        <div class="usercontainer">
+        <div class="usercontaineradmin">
             <div>
                 <img src="./images/adminicon.png" alt="admin icon" id="usericon">
             </div>
             <div>
                 <table class="usertable">
                     <tr>
-                        <th>Full Name :</th>
-                        <td> <?php if (isset($fullname)) {
-                                    echo $fullname;
-                                } ?> </td>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Account Cration Date</th>
+                        <th>Last Login Date</th>
                     </tr>
-                    <tr>
-                        <th>E-mail :</th>
-                        <td> <?php if (isset($adminemail)) {
-                                    echo $adminemail;
-                                } ?></td>
-                    </tr>
-                    <tr>
-                        <th> Password :</th>
-                        <td><?php if (isset($adminpass)) {
-                                echo $adminpass;
-                            } ?></td>
-                    </tr>
-                    <tr>
-                        <th>Date Created:</th>
-                        <td> <?php if (isset($DCreated)) {
-                                    echo $DCreated;
-                                } ?> </td>
-                    </tr>
-                    <tr>
-                        <th>Date last login:</th>
-                        <td> <?php if (isset($Dlastlogin)) {
-                                    echo $Dlastlogin;
-                                } ?></td>
-                    </tr>
+                    <?php
+                    $id = 1;
+                    foreach ($_SESSION["userdata"] as $value) {
+                        echo "<tr>
+                    <td>" . $id . "</td>
+                    <td>" . $value["firstname"] . " " . $value["secondname"] . " " . $value["thirdname"] . " " . $value["lasrname"] . "</td>
+                    <td>" . $value["email"] . "</td>
+                    <td>" . $value["password"] . "</td>
+                    <td>" . $value["creationdate"] . "</td>
+                    <td>" . $value["lastlogindate"] . "</td>
+                </tr>";
+                echo($value["email"]);
+                        $id++;
+                    }
+                    
+                    ?>
                 </table>
             </div>
         </div>
-        <div class="logout">
+        <div class="logoutadmin">
             <button type="button" id="btn1"><a href="landingpage.php" style="color:#205375">Log out</a></button>
         </div>
     </main>
     <br>
     <hr style="font-weight: 10px; color:black">
-    <table> 
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Password</th>
-            <th>Account Cration Date</th>
-            <th>Last Login Date</th>
-        </tr>
-        <?php
-        $id= 1;
-        foreach ($_SESSION["userdata"] as $value) {
-            echo "<tr>
-                    <td>".$id."</td>
-                    <td>".$value["firstname"]." " .$value["secondname"]." ".$value["thirdname"]." ".$value["lasrname"]."</td>
-                    <td>".$value["email"]."</td>
-                    <td>".$value["password"]."</td>
-                    <td>".$value["creationdate"]."</td>
-                    <td>".$value["lastlogindate"]."</td>
-                </tr>";
-            $id++;
-        }
-        ?>
-    </table>
 </body>
-
 </html>

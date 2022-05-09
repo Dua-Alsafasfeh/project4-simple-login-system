@@ -33,8 +33,9 @@ body{
     width: 100%;
 }
 .qoute{
-    width: 30%;
-    margin-left: 23em;
+    text-align: center;
+    width: 50vw;
+    /* margin-left: 23em; */
 }
 #qoute{
     color: #205375;
@@ -43,7 +44,7 @@ body{
     font-family: 'Times New Roman', Times, serif;
 }
 .btn{
-    width: 35%;
+    width: 40vw;
     margin: auto;
     display: flex;
     justify-content: space-around;
@@ -60,7 +61,7 @@ body{
 #btn2{
     color: #EFEFEF;
     font-size: 1.3em;
-    padding: .5em 3em;
+    padding: .5em 2.5em;
     margin:1.5em;
     border-radius: 10px;
     background-color: #205375;
@@ -240,7 +241,18 @@ a{
 .logout{
     text-align:right;
 }
+.logoutadmin{
+    text-align: center;
+}
 /* /////////////////admin page/////////// */
+.usercontaineradmin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    align-items: center;
+}
 .adminpic img{
     width: 100%;
     height: 70vh;
@@ -248,16 +260,16 @@ a{
 /* //////////////////////////////////////////// responsive //////////////////////////////// */
 @media (max-width: 1439px){
     .btn{ width: fit-content;}
-    .qoute{ width: 40vw;}
+    .qoute{ width: 75vw;}
 }
 @media (max-width: 1100px){
     #logo img{width: 18vw; height: 25vh; margin: auto; }
-    .qoute{ width: 50%;margin-left: initial;}
+    .qoute{margin-left:1em;}
     .pop{flex-direction: column;}
     #usericon{ width: 20vw;}
 }
 @media (max-width: 770px){
-    .qoute{ margin-left: initial; width: fit-content;}
+    .qoute{  width:80vw;margin-left:4em;}
     #usericon{ width: 25vw;}
     .table input{width: 23vw;}
 }
@@ -266,7 +278,7 @@ a{
     #logo img{width: 25vw; height: 25vh;margin: auto; }
     .pop{ width: 60vw;}
     .usercontainer{ flex-direction: column;}
-    .logout{text-align: center;}
+    /* .logout{text-align: center;} */
     #usericon{ width: 30vw;}
 } 
 @media (max-width: 580px){
@@ -285,6 +297,7 @@ a{
     #logo{margin: 0;}
     #logo img{width: 55vw; height: 35vh; }
     .landmain{font-size: 1.5em;}
+    .qoute{width:100vw; margin-left: 7em;}
     #qoute{ font-size: 1.6em;}
     .pop{ width: 100%;}
     #regform{ padding: initial;}
@@ -293,7 +306,9 @@ a{
 @media (max-width: 380px){
     #logo img{width: 65vw; height: 35vh; }
     .landmain{font-size: 1.8em;}
+    .qoute{width:50%; }
     #qoute{ font-size: 1.5em;}
+    #btn1 , #btn2{ margin: .5em;}
     .table input{width: 30vw;}
     .label{font-size: .9em; }
     .usertable th{ padding: .5em;}
