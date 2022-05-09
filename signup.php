@@ -45,15 +45,15 @@ if (isset($_POST['submit'])) {
         $eErr = "Email must be as : a@example.com";
     }
     //check email if exist
-    //  elseif (isset($_POST['email'])) {
-    //     if(!empty($_SESSION["userdata"])) {
-    //         foreach ($_SESSION["userdata"] as $key => $value) {
-    //             if ($_POST['email'] == $value["email"]) {
-    //                 $eErr = "Email already used";
-    //             }
-    //         }
-    //     }
-    //  }
+    elseif (isset($_POST['email'])) {
+        if(!empty($_SESSION["userdata"])) {
+            foreach ($_SESSION["userdata"] as $key => $value) {
+                if ($_POST['email'] == $value["email"]) {
+                    $eErr = "Email already used";
+                }
+            }
+        }
+    }
     ////check mobile number
     elseif (!preg_match($mobfilter, $_POST['mobile'])) {
         $mErr = "mobile number must contain 14 digits only";
@@ -67,9 +67,9 @@ if (isset($_POST['submit'])) {
         $cpErr = "password not matched";
     } else {
         $DCreated = date("F d Y ");
-        $Dlastlogin = date("d/m/y - H:i:s ");
+        // $Dlastlogin = date("d/m/y - H:i:s ");
 
-        $_SESSION["datelastlogin"] = $Dlastlogin;
+        // $_SESSION["datelastlogin"] = $Dlastlogin;
         $_SESSION["datecreation"] = $DCreated;
         $_SESSION["firstname"] = $_POST["first"];
         $_SESSION["secondname"] = $_POST["second"];
@@ -104,7 +104,7 @@ if (isset($_POST['submit'])) {
             'phone' => $_SESSION["phone"],
             'password' => $_SESSION["password"],
             'creationdate' => $_SESSION["datecreation"],
-            'lastlogindate' => $_SESSION["datelastlogin"]
+            // 'lastlogindate' => $_SESSION["datelastlogin"]
         );
         array_push($_SESSION["userdata"], $arr);
         // print_r($_SESSION["userdata"]);

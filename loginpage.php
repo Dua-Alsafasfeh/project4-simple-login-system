@@ -23,7 +23,8 @@ if (isset($_POST['submitlogin'])) {
                 $_SESSION['phone']= $value['phone'];
                 $_SESSION['password']= $value['password'];
                 $_SESSION['creationdate']= $value['creationdate'];
-                $_SESSION['lastlogindate']= $value['lastlogindate'];
+                $_SESSION['lastlogindate']= setCookie('lasttime', time(), time()+604800);;
+                // $_SESSION['lastlogindate']= $value['lastlogindate'];
 
                 header('location: welcomepage.php');
             }else{
