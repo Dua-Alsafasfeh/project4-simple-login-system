@@ -1,5 +1,9 @@
 <?php
 session_start();
+$_SESSION["userdata"];
+if(empty($_SESSION["userdata"])){
+    $_SESSION["userdata"]= [];
+}
 $letters = "/^[A-Za-z]+$/";
 $filter = "/([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/";
 $pwd_expression = "/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$/";
@@ -53,7 +57,7 @@ if (isset($_POST['submit'])) {
         $cpErr = "password not matched";
     } else {
         $DCreated = date("F d Y ");
-        $Dlastlogin = date("d/m/y - H:i:s ") . (60 * 24 * 60 * 60 + time());
+        $Dlastlogin = date("d/m/y - H:i:s ") ;
 
         $_SESSION["datelastlogin"] = $Dlastlogin;
         $_SESSION["datecreation"] = $DCreated;
@@ -67,6 +71,20 @@ if (isset($_POST['submit'])) {
         $_SESSION["password"] = $_POST["pass"];
         $_SESSION["confirmpassword"] = $_POST["cpass"];
 
+        $arr = array(
+            'firstname' => $_SESSION["firstname"],
+            'secondname' => $_SESSION["secondname"],
+            'thirdname' => $_SESSION["thirdname"],
+            'lasrname' => $_SESSION["lasrname"],
+            'birthdate' => $_SESSION["birthdate"],
+            'email' => $_SESSION["email"],
+            'phone' => $_SESSION["phone"],
+            'password' => $_SESSION["password"],
+            'creationdate' => $_SESSION["datecreation"],
+            'lastlogindate' => $_SESSION["datelastlogin"]
+        );
+        array_push($_SESSION["userdata"], $arr);
+        // print_r($_SESSION["userdata"]);
         header("location: loginpage.php");
         // session_unset();
     }

@@ -141,6 +141,9 @@ a{
 .bold{
     font-weight: bold;
 }
+#ferr ,#serr ,#therr, #lerr ,#derr ,#merr , #moberr , #perr , #cperr  {
+    color: #F56D91;
+}
 /* //////////////////////////login page/////////////////////// */
 .loginbody{
     background-color: #5B7DB1;
@@ -201,7 +204,7 @@ a{
     background-color: #F8CB2E;
     font-size: 1.3em;
     padding: .25em 4em;
-    margin-left:.5em;
+    margin-left:1.7em;
     border: none;
     border-radius: 10px;
     cursor: pointer;

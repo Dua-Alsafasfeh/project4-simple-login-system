@@ -11,7 +11,7 @@ if (isset($_POST['submitlogin'])) {
     // echo $p;
     if (($e == $admin['admin']) && ($p == $admin['adminpass'])) {
         header('location: admin.php');
-    } elseif (isset($_SESSION["email"]) && ($e == $_SESSION["email"]) && isset($_SESSION["password"]) && ($p == $_SESSION["password"])) {
+    } elseif (isset($_SESSION["email"]) && ($e == $_SESSION["email"]) && ($e!== $admin['admin']) && isset($_SESSION["password"]) && ($p == $_SESSION["password"]) && ($p !== $admin['adminpass'])) {
         header('location: welcomepage.php');
     } else {
         $msg = "Invalid Login Details";

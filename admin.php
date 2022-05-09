@@ -94,6 +94,32 @@ $Dlastlogin = $_SESSION["datelastlogin"];
             <button type="button" id="btn1"><a href="landingpage.php" style="color:#205375">Log out</a></button>
         </div>
     </main>
+    <br>
+    <hr style="font-weight: 10px; color:black">
+    <table> 
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Account Cration Date</th>
+            <th>Last Login Date</th>
+        </tr>
+        <?php
+        $id= 1;
+        foreach ($_SESSION["userdata"] as $value) {
+            echo "<tr>
+                    <td>".$id."</td>
+                    <td>".$value["firstname"]." " .$value["secondname"]." ".$value["thirdname"]." ".$value["lasrname"]."</td>
+                    <td>".$value["email"]."</td>
+                    <td>".$value["password"]."</td>
+                    <td>".$value["creationdate"]."</td>
+                    <td>".$value["lastlogindate"]."</td>
+                </tr>";
+            $id++;
+        }
+        ?>
+    </table>
 </body>
 
 </html>
