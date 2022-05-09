@@ -45,15 +45,15 @@ if (isset($_POST['submit'])) {
         $eErr = "Email must be as : a@example.com";
     }
     //check email if exist
-     elseif (isset($_POST['email'])) {
-        if(!empty($_SESSION["userdata"])) {
-            foreach ($_SESSION["userdata"] as $key => $value) {
-                if ($_POST['email'] == $value["email"]) {
-                    $eErr = "Email already used";
-                }
-            }
-        }
-     }
+    //  elseif (isset($_POST['email'])) {
+    //     if(!empty($_SESSION["userdata"])) {
+    //         foreach ($_SESSION["userdata"] as $key => $value) {
+    //             if ($_POST['email'] == $value["email"]) {
+    //                 $eErr = "Email already used";
+    //             }
+    //         }
+    //     }
+    //  }
     ////check mobile number
     elseif (!preg_match($mobfilter, $_POST['mobile'])) {
         $mErr = "mobile number must contain 14 digits only";
@@ -82,6 +82,18 @@ if (isset($_POST['submit'])) {
         $_SESSION["confirmpassword"] = $_POST["cpass"];
 
         //store information in associative array
+        // $arr = array(
+        //     'firstname' => $_POST["first"],
+        //     'secondname' => $_POST["second"],
+        //     'thirdname' => $_POST["third"],
+        //     'lasrname' => $_POST["last"],
+        //     'birthdate' => $_POST["date"],
+        //     'email' => $_POST["email"],
+        //     'phone' => $_POST["mobile"],
+        //     'password' => $_POST["pass"],
+        //     'creationdate' => $DCreated,
+        //     'lastlogindate' => $Dlastlogin
+        // );
         $arr = array(
             'firstname' => $_SESSION["firstname"],
             'secondname' => $_SESSION["secondname"],
@@ -95,7 +107,7 @@ if (isset($_POST['submit'])) {
             'lastlogindate' => $_SESSION["datelastlogin"]
         );
         array_push($_SESSION["userdata"], $arr);
-        print_r($_SESSION["userdata"]);
+        // print_r($_SESSION["userdata"]);
         header("location: loginpage.php");
         // session_unset();
     }

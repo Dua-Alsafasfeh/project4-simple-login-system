@@ -302,6 +302,7 @@ a{
     .pop{ width: 100%;}
     #regform{ padding: initial;}
     .table input{width: 30vw; }
+    .usertable{font-size:x-small ;}
 } 
 @media (max-width: 380px){
     #logo img{width: 65vw; height: 35vh; }
@@ -312,4 +313,5 @@ a{
     .table input{width: 30vw;}
     .label{font-size: .9em; }
     .usertable th{ padding: .5em;}
+    .usertable{font-size:xx-small ;}
 } 

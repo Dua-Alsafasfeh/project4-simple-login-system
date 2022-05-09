@@ -56,7 +56,7 @@ session_start();
                     <td>" . $value["creationdate"] . "</td>
                     <td>" . $value["lastlogindate"] . "</td>
                 </tr>";
-                echo($value["email"]);
+                // echo($value["email"]);
                         $id++;
                     }
                     
@@ -68,7 +68,5 @@ session_start();
             <button type="button" id="btn1"><a href="landingpage.php" style="color:#205375">Log out</a></button>
         </div>
     </main>
-    <br>
-    <hr style="font-weight: 10px; color:black">
 </body>
 </html>

@@ -11,11 +11,34 @@ if (isset($_POST['submitlogin'])) {
     // echo $p;
     if (($e == $admin['admin']) && ($p == $admin['adminpass'])) {
         header('location: admin.php');
-    } elseif (isset($_SESSION["email"]) && ($e == $_SESSION["email"]) && ($e!== $admin['admin']) && isset($_SESSION["password"]) && ($p == $_SESSION["password"]) && ($p !== $admin['adminpass'])) {
-        header('location: welcomepage.php');
-    } else {
-        $msg = "Invalid Login Details";
-    }
+    }else{
+        foreach($_SESSION["userdata"] as $key => $value){
+            if( $e == $value['email'] && $p == $value['password']){
+                $_SESSION['firstname']= $value['firstname'];
+                $_SESSION['secondname']= $value['secondname'];
+                $_SESSION['thirdname']= $value['thirdname'];
+                $_SESSION['lastname']= $value['lastname'];
+                $_SESSION['birthdate']= $value['birthdate'];
+                $_SESSION['email']= $value['email'];
+                $_SESSION['phone']= $value['phone'];
+                $_SESSION['password']= $value['password'];
+                $_SESSION['creationdate']= $value['creationdate'];
+                $_SESSION['lastlogindate']= $value['lastlogindate'];
+
+                header('location: welcomepage.php');
+            }else{
+                $msg = "Invalid Login Details";
+            }
+        }
+    } 
+
+
+
+    // elseif (isset($_SESSION["email"]) && ($e == $_SESSION["email"]) && ($e!== $admin['admin']) && isset($_SESSION["password"]) && ($p == $_SESSION["password"]) && ($p !== $admin['adminpass'])) {
+    //     header('location: welcomepage.php');
+    // } else {
+    //     $msg = "Invalid Login Details";
+    // }
 }
 // session_unset();
 ?>
