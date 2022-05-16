@@ -45,15 +45,18 @@ if (isset($_POST['submit'])) {
         $eErr = "Email must be as : a@example.com";
     }
     //check email if exist
-    elseif (isset($_POST['email'])) {
-        if(!empty($_SESSION["userdata"])) {
-            foreach ($_SESSION["userdata"] as $key => $value) {
-                if ($_POST['email'] == $value["email"]) {
-                    $eErr = "Email already used";
-                }
-            }
-        }
-    }
+    // elseif (isset($_POST['email'])) {
+    //     if(!empty($_SESSION["userdata"])) {
+    //         foreach ($_SESSION["userdata"] as $key => $value) {
+    //             if ($_POST['email'] == $value["email"]) {
+    //                 $eErr = "Email already used";
+    //                 break;
+    //             }else {
+    //                 $eErr ="ok";
+    //             }
+    //         }
+    //     }
+    // }
     ////check mobile number
     elseif (!preg_match($mobfilter, $_POST['mobile'])) {
         $mErr = "mobile number must contain 14 digits only";
